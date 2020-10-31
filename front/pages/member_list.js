@@ -2,25 +2,15 @@ import Link from 'next/link'
 
 export default () =><div>
     <h1>Member list</h1>
-    <div>Welcome</div>
-    <div>
-        <Link href = "/log_in">
-            <a>Log in</a>
-        </Link>
-    </div>
-    <div>
-        <Link href = "/group_registration">
-            <a>Group registration</a>
-        </Link>
-    </div>
-    <div>
-        <Link href = "/add_member">
-            <a>Add member</a>
-        </Link>
-    </div>
+    <div>閲覧したいグループ名とそのパスワードを入力してください</div>
+    <label>
+        <p>グループ名:<input type="text" name="group_name" required></input></p>
+        <p>パスワード:<input type="text" name="password" required></input></p>
+    </label>
+    <input type="submit" value="メンバーを閲覧"></input>
     <div>
         <Link href = "/">
-            <a>go home</a>
+            <a>Go home</a>
         </Link>
     </div>
 </div>
