@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default () =><div>
-    <h1>Group registration</h1>
+    <h1>Add member</h1>
     <div>Welcome</div>
     <div>
         <Link href = "/log_in">
@@ -9,8 +9,8 @@ export default () =><div>
         </Link>
     </div>
     <div>
-        <Link href = "/add_member">
-            <a>Add member</a>
+        <Link href = "/group_registration">
+            <a>Group registration</a>
         </Link>
     </div>
     <div>
