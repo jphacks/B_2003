@@ -1,13 +1,14 @@
 {
-    "scripts" : {
-        "dev" : "next" ,
-        "build" : "next build" ,
-        "start" : "next start" ,
-        "export" : "next export"
+    "scripts": {
+        "dev": "next",
+        "build": "next build",
+        "start": "next start",
+        "export": "next export"
     },
-    "dependencies" : {
-        "next" : "^9.5.3" ,
-        "react" : "16.13.1" ,
-        "react-dom" : "16.13.1"
+    "dependencies": {
+        "next": "^9.5.5",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-webcam": "^5.2.1"
     }
 }
