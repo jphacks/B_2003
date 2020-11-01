@@ -5,6 +5,11 @@ export default () =><div>
     <div>カメラに顔を映して、ログインボタンを押してください</div>
     <input type="submit" value="ログイン"　onSubmit="confirmation_screen.js"></input>
     <div>
+        <Link href="/member_list">
+            <a>メンバーリスト</a>
+        </Link>
+    </div>
+    <div>
         <Link href = "/add_member">
             <a>Add member</a>
         </Link>
