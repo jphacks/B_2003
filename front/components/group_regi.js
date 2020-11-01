@@ -12,17 +12,23 @@ export default class Groupregistration extends Component {
         e.preventDefault();
         const method = "POST";
         const body = JSON.stringify({name: information.name.value,email_address: information.email_address.value,password: information.password.value,limit: information.limit.value,});
-        console.log(body);
+        //console.log(body);
         fetch('https://uzi8fe1wu4.execute-api.eu-west-1.amazonaws.com/register_place/register_place',{method: "POST",body: body})
         .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-      })
+        .then((responseJson) => {
+        //console.log(responseJson);
+            if(responseJson.result == 2){
+                window.alert("あなたのトークンは"+responseJson.password_token+"です。必ずメモをとってください。")
+            }else{
+                window.alert("あなたの団体は登録済みです。ログインしてください。")
+            }
+            location.href = "/group_log_in";
+        })
       .catch((error) =>{
-        console.error(error);
+        window.alert("登録時にエラーが起きました。もう一度入力してください。")
+        location.href = "/group_registration"
+        //console.error('error');
       });
-
-        //location.href = "/group_log_in";
     }
 
     render(){
