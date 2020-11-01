@@ -1,6 +1,8 @@
 import sys
 import os
 import pymysql
+import string
+import json
  
 #rds settings
 DB_USER = os.environ["user"]
@@ -16,16 +18,64 @@ except Exception  as e:
     sys.exit()
  
 print("Success connecting to RDS mysql instance")
+
+
 def handler(event, context):
- 
-    item_count = 0
- 
-    with conn.cursor() as cur:
-        cur.execute("select id, name from test_table")
-        for row in cur:
-            item_count += 1
-            print(row)
- 
-    return "Get %d items from RDS MySQL table" %(item_count) 
- 
+    print(event['body'])
+    body = json.loads(event['body'])
+    email_address = body['email_address']
+    password = body['password']
+    name = 'NULL'
+    facilityID = 'NULL' 
+    
+    tmp = (email_address, password)
+    
+    with conn.cursor(pymysql.cursors.DictCursor) as cur:
+        try:
+            cur.execute("SELECT name, facilityID FROM facility WHERE email_address= %s AND password= %s", tmp)
+            #print(cur.fetchone())
+            for row in cur:
+                result = 1
+                print(row) 
+                name = row['name']
+                facilityID = row['facilityID']
+        except Exception as e:
+            print(e)
+            body = json.dumps({
+                'result': 0,
+            })
+            return {
+                'isBase64Encoded': False,
+                'statusCode': 200,
+                'headers':{ 
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }, 
+                'body': body
+            }
+            name = 'None'
+            facilityID = 'None'
+    
+    #データベースコミット！ 
+    conn.commit()
+    conn.close()
+    print(name)
+    print(facilityID)
+    
+    body = json.dumps({
+        'result':1,
+        'name' : name,
+        'facilityID': facilityID
+    })
+     
+     # returnは4パラメータで、辞書(or json)を返す
+    return {
+        'isBase64Encoded': False,
+        'statusCode': 200,
+        'headers':{ 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }, 
+        'body': body
+    }
  

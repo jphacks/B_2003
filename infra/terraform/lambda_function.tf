@@ -7,14 +7,14 @@ resource "aws_lambda_function" "get_number" {
   filename         = data.archive_file.get_number.output_path
   source_code_hash = data.archive_file.get_number.output_base64sha256
 
-  layers = [aws_lambda_layer_version.pymysql.arn]
+  layers  = [aws_lambda_layer_version.pymysql.arn]
   timeout = 30
   environment {
     variables = {
-      user = aws_rds_cluster.db_cluster.master_username,
+      user     = aws_rds_cluster.db_cluster.master_username,
       password = aws_rds_cluster.db_cluster.master_password,
       endpoint = aws_rds_cluster.db_cluster.endpoint,
-      db = local.db_name
+      db       = local.db_name
     }
   }
 
@@ -38,14 +38,14 @@ resource "aws_lambda_function" "recognition" {
   filename         = data.archive_file.recognition.output_path
   source_code_hash = data.archive_file.recognition.output_base64sha256
 
-  layers = [aws_lambda_layer_version.pymysql.arn]
+  layers  = [aws_lambda_layer_version.pymysql.arn]
   timeout = 30
-   environment {
+  environment {
     variables = {
-      user = aws_rds_cluster.db_cluster.master_username,
+      user     = aws_rds_cluster.db_cluster.master_username,
       password = aws_rds_cluster.db_cluster.master_password,
       endpoint = aws_rds_cluster.db_cluster.endpoint,
-      db = local.db_name
+      db       = local.db_name
     }
   }
   vpc_config {
@@ -68,14 +68,14 @@ resource "aws_lambda_function" "register_place" {
   filename         = data.archive_file.register_place.output_path
   source_code_hash = data.archive_file.register_place.output_base64sha256
 
-  layers = [aws_lambda_layer_version.pymysql.arn]
+  layers  = [aws_lambda_layer_version.pymysql.arn]
   timeout = 30
-   environment {
+  environment {
     variables = {
-      user = aws_rds_cluster.db_cluster.master_username,
+      user     = aws_rds_cluster.db_cluster.master_username,
       password = aws_rds_cluster.db_cluster.master_password,
       endpoint = aws_rds_cluster.db_cluster.endpoint,
-      db = local.db_name
+      db       = local.db_name
     }
   }
   vpc_config {
@@ -98,14 +98,14 @@ resource "aws_lambda_function" "register_user" {
   filename         = data.archive_file.register_user.output_path
   source_code_hash = data.archive_file.register_user.output_base64sha256
 
-  layers = [aws_lambda_layer_version.pymysql.arn]
+  layers  = [aws_lambda_layer_version.pymysql.arn]
   timeout = 30
-   environment {
+  environment {
     variables = {
-      user = aws_rds_cluster.db_cluster.master_username,
+      user     = aws_rds_cluster.db_cluster.master_username,
       password = aws_rds_cluster.db_cluster.master_password,
       endpoint = aws_rds_cluster.db_cluster.endpoint,
-      db = local.db_name
+      db       = local.db_name
     }
   }
   vpc_config {
@@ -128,14 +128,14 @@ resource "aws_lambda_function" "signin_place" {
   filename         = data.archive_file.signin_place.output_path
   source_code_hash = data.archive_file.signin_place.output_base64sha256
 
-  layers = [aws_lambda_layer_version.pymysql.arn]
+  layers  = [aws_lambda_layer_version.pymysql.arn]
   timeout = 30
-   environment {
+  environment {
     variables = {
-      user = aws_rds_cluster.db_cluster.master_username,
+      user     = aws_rds_cluster.db_cluster.master_username,
       password = aws_rds_cluster.db_cluster.master_password,
       endpoint = aws_rds_cluster.db_cluster.endpoint,
-      db = local.db_name
+      db       = local.db_name
     }
   }
   vpc_config {
