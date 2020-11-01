@@ -1,0 +1,51 @@
+import React, { Component } from 'react';
+import Link from 'next/link'
+
+export default class Groupregistration extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handlesubmit = this.handlesubmit.bind(this);
+    }
+
+    handlesubmit(e){
+        e.preventDefault();
+        const method = "POST";
+        const body = JSON.stringify({name: information.name.value,email_address: information.email_address.value,password: information.password.value,limit: information.limit.value,});
+        console.log(body);
+        fetch('https://uzi8fe1wu4.execute-api.eu-west-1.amazonaws.com/register_place/register_place',{method: "POST",body: body})
+        .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
+        //location.href = "/group_log_in";
+    }
+
+    render(){
+        return(<div>
+            <h1>Group registration</h1>
+            <div><h1>"サービス名"へようこそ</h1>登録情報を入力してください</div>
+            <form id="information" onSubmit={this.handlesubmit}>
+                <p>団体名:<input type="text" name="name" required></input></p>
+                <p>メールアドレス:<input type="email" name="email_address" required></input></p>
+                <p>パスワード:<input type="text" name="password" minLength="5" required></input></p>
+                <p>同時に活動できる人数:<input type="number" name="limit" required></input></p>
+                <button type="submit">新規登録</button>
+            </form>
+            <div>
+                <Link href = "/group_log_in">
+                    <a>ログイン</a>
+                </Link>
+            </div>
+            <div>
+                <Link href = "/">
+                    <a>Go home</a>
+                </Link>
+            </div>
+        </div>)
+    }
+}

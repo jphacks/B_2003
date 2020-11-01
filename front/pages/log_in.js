@@ -6,6 +6,11 @@ export default () =><div>
     <input type="submit" value="ログイン"　onSubmit="confirmation_screen.js"></input>
     <video id = "camera" width="300" height="200"></video>
     <div>
+        <Link href="/member_list">
+            <a>メンバーリスト</a>
+        </Link>
+    </div>
+    <div>
         <Link href = "/add_member">
             <a>Add member</a>
         </Link>
