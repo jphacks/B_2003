@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import Login from '../components/login'
 
 export default () =><div>
     <h1>Log in</h1>
     <div>カメラに顔を映して、ログインボタンを押してください</div>
-    <input type="submit" value="ログイン"　onSubmit="confirmation_screen.js"></input>
+    <Login />
     <div>
         <Link href="/member_list">
             <a>メンバーリスト</a>
