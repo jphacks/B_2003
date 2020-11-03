@@ -77,5 +77,7 @@ resource "aws_vpc_endpoint" "rekognition" {
   security_group_ids = [
     aws_default_security_group.sg.id
   ]
-  vpc_endpoint_type = "Interface"
+  vpc_endpoint_type   = "Interface"
+  private_dns_enabled = true
+  subnet_ids          = [aws_subnet.subnet_b.id, aws_subnet.subnet_a.id]
 }
