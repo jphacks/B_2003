@@ -23,11 +23,11 @@ class Grouplogin extends Component {
                 console.log(responseJson.facilityID)
                 console.log(responseJson.passwordtoken)
             }
-            //location.href = "/member_list";
+            location.href = "/member_list";
         })
       .catch((error) =>{
         window.alert("エラーが起きました。もう一度入力してください。")
-        //location.href = "/group_log_in"
+        location.href = "/group_log_in"
         //console.error('error');
       });
     }

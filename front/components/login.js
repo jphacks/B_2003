@@ -10,6 +10,7 @@ export default class Login extends Component {
     capture = () => {
 
         const img = this.webcam.getScreenshot()
+        console.log(img)
         const facilityID = 1738
         //console.log(img)
 

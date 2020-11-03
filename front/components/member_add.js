@@ -12,7 +12,10 @@ export default class Addmember extends Component {
         e.preventDefault();
         const method = "POST";
         const body = JSON.stringify({name: new_member.name.value,email_address: new_member.email_address.value,affiliation: new_member.affiliation.value,face_photo: new_member.picture.value,});
-        //console.log(body);
+        
+        const img = new_member.picture.files;
+        const start = img.indexOf(',')+1;
+        const faceid = img.slice(start);
         fetch('https://uzi8fe1wu4.execute-api.eu-west-1.amazonaws.com/register_user/register_user',{method: "POST",body: body})
         .then((response) => response.json())
         .then((responseJson) => {
@@ -25,7 +28,7 @@ export default class Addmember extends Component {
                 location.href = "/add_member"
             }else{
                 window.alert("登録が完了しました！")
-                location.href = "/member_list.js"
+                location.href = "/member_list"
             }
         })
       .catch((error) =>{
