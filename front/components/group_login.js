@@ -15,7 +15,7 @@ class Grouplogin extends Component {
         e.preventDefault();
         const method = "POST";
         const body = JSON.stringify({password: group_info.password.value,email_address: group_info.email_address.value,});
-        fetch('https://uzi8fe1wu4.execute-api.eu-west-1.amazonaws.com/signin_place/signin_place',{method: "POST",body: body})
+        fetch('https://9dlsqbzy25.execute-api.eu-west-1.amazonaws.com/signin_place/signin_place',{method: "POST",body: body})
         .then((response) => response.json())
         .then((responseJson) => {
             if(responseJson.result == 0){
@@ -26,7 +26,7 @@ class Grouplogin extends Component {
                 console.log(responseJson.facilityID)
                 console.log(responseJson.passwordtoken)
             }
-            location.href = "/member_list";
+            location.href = "/log_in";
         })
       .catch((error) =>{
         window.alert("エラーが起きました。もう一度入力してください。")

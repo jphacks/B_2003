@@ -6,10 +6,16 @@ class Showmember extends Component {
         super(props);
     }
 
-    componentDidMount(props){
+    componentDidUpdate(props){
         //const members = new Array('shunya','kotaro','naoya','kohei','uec');
+        
+    }
+    
+    render(){
+        /*
         const members = this.props.memberlist;
         const timeline = document.getElementById("member");
+        console.log("jsjs");
         timeline.innerHTML = "";
         for(var i=0;i<members.length;i++){
             const sentence = document.createElement("p");
@@ -17,12 +23,12 @@ class Showmember extends Component {
             sentence.appendChild(name);
             timeline.appendChild(sentence);
         }
-    }
-    render(){
+        */
+
         return (
         <div>
             <h1>活動メンバー</h1>
-            <div id = "member"></div>
+            <div id = "member">{this.props.memberlist}</div>
         </div>)
     }
 }
