@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/member": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/member.js"
-    ],
     "/member_list": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/member_list.js"
+    ],
+    "/show_member": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/show_member.js"
     ]
   },
   "ampFirstPages": []
