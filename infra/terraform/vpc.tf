@@ -43,6 +43,7 @@ resource "aws_subnet" "subnet_b" {
   map_public_ip_on_launch = true
 }
 
+
 resource "aws_default_security_group" "sg" {
   vpc_id = aws_vpc.vpc.id
 
@@ -68,4 +69,13 @@ resource "aws_default_security_group" "sg" {
     self        = false
     to_port     = 0
   }
+}
+
+resource "aws_vpc_endpoint" "rekognition" {
+  vpc_id       = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-1.rekognition"
+  security_group_ids = [
+    aws_default_security_group.sg.id
+  ]
+  vpc_endpoint_type = "Interface"
 }

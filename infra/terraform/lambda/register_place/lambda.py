@@ -83,12 +83,12 @@ def handler(event, context):
             cur.execute(sql, tmp)
         
         except Exception as e:
-            print(e)
+            print('Exception',e)
             result = 0
             
-        #データベースコミット！ 
-        conn.commit()
-        conn.close()
+    #データベースコミット！ 
+    conn.commit()
+    #conn.close()
     
     #異常終了
     print("result :" + str(result))

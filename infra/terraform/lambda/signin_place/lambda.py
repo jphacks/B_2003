@@ -17,30 +17,49 @@ except Exception  as e:
     print(e)
     sys.exit()
  
-print("Success connecting to RDS mysql instance")
+print("Success connecting to RDS mysql instance") 
 
 
 def handler(event, context):
-    print(event['body'])
     body = json.loads(event['body'])
+    print(body)
     email_address = body['email_address']
     password = body['password']
     name = 'NULL'
     facilityID = 'NULL' 
+    password_token = 'NULL'
     
-    tmp = (email_address, password)
+    tmp = [(email_address), (password)]
     
-    with conn.cursor(pymysql.cursors.DictCursor) as cur:
+    with conn.cursor(pymysql.cursors.DictCursor) as cur: 
         try:
-            cur.execute("SELECT name, facilityID FROM facility WHERE email_address= %s AND password= %s", tmp)
-            #print(cur.fetchone())
-            for row in cur:
+            #TODO add password認証
+            cur.execute("SELECT name, facilityID, password_token FROM facility WHERE email_address= %s AND password= %s", [(email_address), (password)])
+            row = cur.fetchone()
+            if row == None:
+                print('no Exist in facility')
+                body = json.dumps({
+                    "result":0,
+                })
+                conn.commit()
+                return { 
+                    'isBase64Encoded': False,
+                    'statusCode': 200,
+                    'headers':{ 
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }, 
+                    'body': body
+                }
+            while row is not None:
                 result = 1
-                print(row) 
+                print(row)
                 name = row['name']
                 facilityID = row['facilityID']
+                password_token = row['password_token']
+                row = cur.fetchone()
         except Exception as e:
-            print(e)
+            print('Exception',e)
             body = json.dumps({
                 'result': 0,
             })
@@ -53,22 +72,21 @@ def handler(event, context):
                 }, 
                 'body': body
             }
-            name = 'None'
-            facilityID = 'None'
     
     #データベースコミット！ 
     conn.commit()
-    conn.close()
-    print(name)
-    print(facilityID)
-    
+    #conn.close()
+    print('name=',name)
+    print('facilityID=',facilityID)
+    print('password_token=',password_token)
+        
     body = json.dumps({
         'result':1,
         'name' : name,
-        'facilityID': facilityID
+        'facilityID': facilityID,
+        'password_token': password_token
     })
      
-     # returnは4パラメータで、辞書(or json)を返す
     return {
         'isBase64Encoded': False,
         'statusCode': 200,

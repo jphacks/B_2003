@@ -28,6 +28,13 @@ data "archive_file" "signin_place" {
   output_path = "${local.output_path}/signin_place/lambda.zip"
 }
 
+data "archive_file" "list_get" {
+  type        = "zip"
+  source_dir  = "${local.source_path}/list_get"
+  output_path = "${local.output_path}/list_get/lambda.zip"
+}
+
+
 data "archive_file" "pymysql_layer" {
   type        = "zip"
   source_dir  = "${local.source_path}/package/pymysql"

@@ -1,6 +1,7 @@
 import sys
 import os
 import boto3
+import botocore
 import pymysql
 import base64
 import uuid
@@ -24,6 +25,7 @@ print("Success connecting to RDS mysql instance")
 #S3に画像を保存する必要は実質的にない。API定義ではS3を通しているが、DBにFaceD渡せば解決する。
 #return変えてFaceID取得するべき
 
+
 def upload_file(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
 
@@ -32,7 +34,6 @@ def upload_file(file_name, bucket, object_name=None):
     :param object_name: S3 object name. If not specified then file_name is used
     :return: True if file was uploaded, else False
     """
-
     # If S3 object_name was not specified, use file_name
     if object_name is None:
         object_name = file_name
@@ -46,60 +47,53 @@ def upload_file(file_name, bucket, object_name=None):
         return False
     return True
 
+def decode_base64(photo):
+    return base64.b64decode(photo.encode('utf-8'))
 
-def add_faces_to_collection(bucket, photo, collection_id):
 
+def add_faces_to_collection(bucket, photo, collection_id, imageID): 
     client = boto3.client('rekognition')
-
-    response = client.index_faces(CollectionId=collection_id,Image={"S3Object": {"Bucket": bucket,"Name": photo}}, ExternalImageId=photo,MaxFaces=1,QualityFilter="AUTO",DetectionAttributes=['ALL'])
-
-    print('Results for ' + photo) 
+    photo_bytes = decode_base64(photo) 
+    response = client.index_faces(CollectionId=collection_id,
+                Image={'Bytes':photo_bytes},
+               #{ 'S3Object': {
+                                      #'Bucket': bucket, 'Name': photo
+                ExternalImageId= str(imageID), # 顔データ 
+                MaxFaces=1,  # コレクションに追加する顔の最大数
+                QualityFilter="AUTO",  # 顔データとしての質が悪いものが除外
+                DetectionAttributes=['ALL'])  # 顔データの全てのランドマークを返す
+    print('Results for ' + str(imageID)) 
     print('Faces indexed:')
+    #TODO error handling
     for faceRecord in response['FaceRecords']:
-        print('  Face ID: ' + faceRecord['Face']['FaceId'])
-        print('  Location: {}'.format(faceRecord['Face']['BoundingBox']))
+        print('Face ID: ' + faceRecord['Face']['FaceId'])
         return faceRecord['Face']['FaceId']
 
     print('Faces not indexed:')
     for unindexedFace in response['UnindexedFaces']:
         return "error"
-    """
-        print(' Location: {}'.format(
-            unindexedFace['FaceDetail']['BoundingBox']))
-        print(' Reasons:')
-        for reason in unindexedFace['Reasons']:
-            print('   ' + reason)
-    return len(response['FaceRecords'])
-    """
-    
-#base64をデコードする
-def convert_b64_string_to_bynary(s):
-    return base64.b64decode(s.encode("UTF-8"))
 
 def handler(event, context):
-    print(event['body'])
-    body = json.dumps(event['body'])
+    print(event['body']) 
+    body = json.loads(event['body'])
     bucket = 'recognition'  #rekognitionを動かすためのバケット
     collection_id = 'Collection' #コレクション名
     
     # photo
-    base_64ed_image = body['face_photo']
-    face_photo = convert_b64_string_to_bynary(base_64ed_image)
-    
+    face_photo = body['face_photo']
+
     name = body['name']
     email_address = body['email_address']
     affilitian = body['affilitian']
+    imageID = "NONE"
     
     with conn.cursor(pymysql.cursors.DictCursor) as cur:
         #被り確認
         try:
-            cur.execute("SELECT name FROM user WHERE email_address = %s", (email_address))
-            flag = 0
-            for i in cur:
-                flag = 1
-                break
-            
-            if flag >= 1:
+            cur.execute("SELECT name FROM users WHERE email_address = %s", email_address)
+            row = cur.fetchone()
+            print('row=',row)
+            if row is not None:
                 print("already registered")
                 body = json.dumps({
                     "result":0,
@@ -111,42 +105,58 @@ def handler(event, context):
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*'
                     },
-                    'body': '{"result": "0"}'
+                    'body': body
                 }
-        except Exception as e:
-            print(e)
-            
-        conn.commit()
-        conn.close()
-    #TODO error handring
-    face_token = add_faces_to_collection(bucket, face_photo, collection_id)
-    # face_tokenエラー
-    if face_token == 'error':
-        body = json.dumps({
-            "result":result,
-            "password_token": password_token
-        })
-        return {
-            'isBase64Encoded': False,
-            'statusCode': 200,
-            'headers':{ 
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': body
-        } 
-    upload_file(face_photo, bucket, object_name = face_token)
- 
-    with conn.cursor(pymysql.cursors.DictCursor) as cur:
-        sql = "INSERT INTO user (userID, name, email_address, affilitian) VALUES (%s, %s, %s, %s)"
-        tmp = (face_token, name, email_address, affilitian)
-        try:
+
+            cur.execute("SELECT COUNT(*) FROM users")
+            row = cur.fetchone()
+            print('row=',row)
+            imageID = row['COUNT(*)']
+
+            print("imageID : " + str(imageID+1)) 
+            newImageID = imageID +1
+            print("imageID : " + str(newImageID)) 
+        
+            #TODO error handring
+            #upload_file(face_photo, bucket, object_name = imageID)
+            face_token = add_faces_to_collection(bucket, face_photo, collection_id, newImageID) 
+            # face_tokenエラー
+            print('face token=', face_token)
+            if face_token == 'error':
+                body = json.dumps({
+                    "result": 1,
+                })
+                return {
+                    'isBase64Encoded': False,
+                    'statusCode': 200,
+                    'headers':{ 
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': body
+                } 
+            sql = "INSERT INTO users (userID, name, email_address, affilitian) VALUES (%s, %s, %s, %s)"
+            tmp = [(face_token), (name), (email_address), (affilitian)]
+            print('tmp=', tmp)
             cur.execute(sql, tmp)
+            
         except Exception as e:
-            print(e)
-        conn.commit()
-        conn.close()
-    
+            print('Exception',e)
+            body = json.dumps({
+                "result":0,
+            })
+            return {
+                'isBase64Encoded': False,
+                'statusCode': 200,
+                'headers':{ 
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': body
+            }
+            
+    conn.commit()
+    #conn.close()
     body = json.dumps({
             "result":2,
         })
@@ -158,6 +168,6 @@ def handler(event, context):
             'Access-Control-Allow-Origin': '*'
         },
         'body': body
-    } 
- 
+    }
+        
  

@@ -84,7 +84,7 @@ resource "aws_api_gateway_resource" "signin_place" {
 resource "aws_api_gateway_method" "signin_place" {
   rest_api_id   = aws_api_gateway_rest_api.jphacks.id
   resource_id   = aws_api_gateway_resource.signin_place.id
-  http_method   = "GET"
+  http_method   = "POST"
   authorization = "NONE"
 }
 
@@ -252,7 +252,7 @@ resource "aws_api_gateway_integration_response" "recognition" {
 resource "aws_api_gateway_deployment" "recognition" {
   depends_on  = [aws_api_gateway_integration.recognition]
   rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  stage_name  = "recognitionr"
+  stage_name  = "recognition"
   lifecycle {
     create_before_destroy = true
   }
@@ -271,7 +271,7 @@ resource "aws_api_gateway_resource" "get_number" {
 resource "aws_api_gateway_method" "get_number" {
   rest_api_id   = aws_api_gateway_rest_api.jphacks.id
   resource_id   = aws_api_gateway_resource.get_number.id
-  http_method   = "GET"
+  http_method   = "POST"
   authorization = "NONE"
 }
 
@@ -315,6 +315,66 @@ resource "aws_api_gateway_deployment" "get_number" {
   depends_on  = [aws_api_gateway_integration.get_number]
   rest_api_id = aws_api_gateway_rest_api.jphacks.id
   stage_name  = "get_number"
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# define list_get
+
+resource "aws_api_gateway_resource" "list_get" {
+  rest_api_id = aws_api_gateway_rest_api.jphacks.id
+  parent_id   = aws_api_gateway_rest_api.jphacks.root_resource_id
+  path_part   = "list_get"
+}
+
+resource "aws_api_gateway_method" "list_get" {
+  rest_api_id   = aws_api_gateway_rest_api.jphacks.id
+  resource_id   = aws_api_gateway_resource.list_get.id
+  http_method   = "POST"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_method_response" "list_get_response_200" {
+  rest_api_id = aws_api_gateway_rest_api.jphacks.id
+  resource_id = aws_api_gateway_resource.list_get.id
+  http_method = aws_api_gateway_method.list_get.http_method
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true,
+    "method.response.header.Access-Control-Allow-Methods" = true,
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+  status_code = "200"
+}
+
+resource "aws_api_gateway_integration" "list_get" {
+  rest_api_id             = aws_api_gateway_rest_api.jphacks.id
+  resource_id             = aws_api_gateway_resource.list_get.id
+  http_method             = aws_api_gateway_method.list_get.http_method
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  content_handling        = "CONVERT_TO_TEXT"
+  uri                     = aws_lambda_function.list_get.invoke_arn
+}
+
+resource "aws_api_gateway_integration_response" "list_get" {
+  rest_api_id = aws_api_gateway_rest_api.jphacks.id
+  resource_id = aws_api_gateway_resource.list_get.id
+  http_method = aws_api_gateway_method.list_get.http_method
+  status_code = aws_api_gateway_method_response.list_get_response_200.status_code
+  response_templates = {
+    "application/json" = ""
+  }
+  depends_on = [aws_api_gateway_integration.list_get]
+}
+
+resource "aws_api_gateway_deployment" "list_get" {
+  depends_on  = [aws_api_gateway_integration.list_get]
+  rest_api_id = aws_api_gateway_rest_api.jphacks.id
+  stage_name  = "list_get"
   lifecycle {
     create_before_destroy = true
   }

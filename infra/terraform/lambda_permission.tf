@@ -47,3 +47,13 @@ resource "aws_lambda_permission" "signin_place" {
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
   source_arn = "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.jphacks.id}/*/${aws_api_gateway_method.signin_place.http_method}${aws_api_gateway_resource.signin_place.path}"
 }
+
+resource "aws_lambda_permission" "list_get" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.list_get.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
+  source_arn = "arn:aws:execute-api:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:${aws_api_gateway_rest_api.jphacks.id}/*/${aws_api_gateway_method.list_get.http_method}${aws_api_gateway_resource.list_get.path}"
+}
