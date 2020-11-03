@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default () =><div>
+export default () =><div className='text-center'>
     <h1>Group</h1>
     <div><h1>"サービス名"へようこそ</h1>新しくまだアカウントを持っていない団体は新規登録。すでに登録済みの団体はログインを押してください。</div>
     <div>

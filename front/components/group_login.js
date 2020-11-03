@@ -1,5 +1,8 @@
+import Button from '../node_modules/react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
+
 
 class Grouplogin extends Component {
 
@@ -36,10 +39,11 @@ class Grouplogin extends Component {
         return (<div>
         <h1>Group Log in</h1>
         <div>ログインに必要な情報を入力してください</div>
+
         <form id = "group_info" onSubmit={this.sendinfo}>
             <p>メールアドレス:<input type="email" name="email_address" required></input></p>
             <p>パスワード:<input type="text" name="password" required></input></p>
-            <button type="submit">ログイン</button>
+            <Button variant="info" type="submit" size='lg'>ログイン</Button>
         </form>
         <div>
             <Link href = "/member_list">

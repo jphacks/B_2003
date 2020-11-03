@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
+import Button from '../node_modules/react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class Groupregistration extends Component {
 
@@ -32,15 +34,15 @@ export default class Groupregistration extends Component {
     }
 
     render(){
-        return(<div>
+        return(<div className='text-center'>
             <h1>Group registration</h1>
             <div><h1>"サービス名"へようこそ</h1>登録情報を入力してください</div>
             <form id="information" onSubmit={this.handlesubmit}>
-                <p>団体名:<input type="text" name="name" required></input></p>
-                <p>メールアドレス:<input type="email" name="email_address" required></input></p>
-                <p>パスワード:<input type="text" name="password" minLength="5" required></input></p>
-                <p>同時に活動できる人数:<input type="number" name="limit" required></input></p>
-                <button type="submit">新規登録</button>
+                <p>団体名:　<input type="text" name="name" required></input></p>
+                <p>メールアドレス:　<input type="email" name="email_address" required></input></p>
+                <p>パスワード:　<input type="text" name="password" minLength="5" required></input></p>
+                <p>同時に活動できる人数:　<input type="number" name="limit" min="1" required></input></p>
+                <Button variant='info' type="submit">新規登録</Button>
             </form>
             <div>
                 <Link href = "/group_log_in">
