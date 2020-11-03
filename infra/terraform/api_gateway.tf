@@ -1,4 +1,4 @@
-#TODO URLクエリ文字列パラメータ
+#todo cors refactaring
 
 resource "aws_api_gateway_rest_api" "jphacks" {
   name        = "JPHacks"
@@ -33,9 +33,7 @@ resource "aws_api_gateway_method_response" "register_place_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -51,14 +49,17 @@ resource "aws_api_gateway_integration" "register_place" {
 }
 
 resource "aws_api_gateway_integration_response" "register_place" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.register_place.id
-  http_method = aws_api_gateway_method.register_place.http_method
-  status_code = aws_api_gateway_method_response.register_place_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.register_place.id
+  http_method       = aws_api_gateway_method.register_place.http_method
+  status_code       = aws_api_gateway_method_response.register_place_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
-
   depends_on = [aws_api_gateway_integration.register_place]
 }
 
@@ -70,7 +71,6 @@ resource "aws_api_gateway_deployment" "register_place" {
     create_before_destroy = true
   }
 }
-
 
 
 # define signin_place
@@ -96,9 +96,7 @@ resource "aws_api_gateway_method_response" "signin_place_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -114,14 +112,17 @@ resource "aws_api_gateway_integration" "signin_place" {
 }
 
 resource "aws_api_gateway_integration_response" "signin_place" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.signin_place.id
-  http_method = aws_api_gateway_method.signin_place.http_method
-  status_code = aws_api_gateway_method_response.signin_place_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.signin_place.id
+  http_method       = aws_api_gateway_method.signin_place.http_method
+  status_code       = aws_api_gateway_method_response.signin_place_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
-
   depends_on = [aws_api_gateway_integration.signin_place]
 }
 
@@ -158,9 +159,7 @@ resource "aws_api_gateway_method_response" "register_user_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -176,14 +175,17 @@ resource "aws_api_gateway_integration" "register_user" {
 }
 
 resource "aws_api_gateway_integration_response" "register_user" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.register_user.id
-  http_method = aws_api_gateway_method.register_user.http_method
-  status_code = aws_api_gateway_method_response.register_user_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.register_user.id
+  http_method       = aws_api_gateway_method.register_user.http_method
+  status_code       = aws_api_gateway_method_response.register_user_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
-
   depends_on = [aws_api_gateway_integration.register_user]
 }
 
@@ -220,9 +222,7 @@ resource "aws_api_gateway_method_response" "recognition_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -238,14 +238,17 @@ resource "aws_api_gateway_integration" "recognition" {
 }
 
 resource "aws_api_gateway_integration_response" "recognition" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.recognition.id
-  http_method = aws_api_gateway_method.recognition.http_method
-  status_code = aws_api_gateway_method_response.recognition_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.recognition.id
+  http_method       = aws_api_gateway_method.recognition.http_method
+  status_code       = aws_api_gateway_method_response.recognition_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
-
   depends_on = [aws_api_gateway_integration.recognition]
 }
 
@@ -283,9 +286,7 @@ resource "aws_api_gateway_method_response" "get_number_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -301,10 +302,14 @@ resource "aws_api_gateway_integration" "get_number" {
 }
 
 resource "aws_api_gateway_integration_response" "get_number" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.get_number.id
-  http_method = aws_api_gateway_method.get_number.http_method
-  status_code = aws_api_gateway_method_response.get_number_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.get_number.id
+  http_method       = aws_api_gateway_method.get_number.http_method
+  status_code       = aws_api_gateway_method_response.get_number_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
@@ -343,9 +348,7 @@ resource "aws_api_gateway_method_response" "list_get_response_200" {
     "application/json" = "Empty"
   }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = true,
-    "method.response.header.Access-Control-Allow-Methods" = true,
-    "method.response.header.Access-Control-Allow-Origin"  = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
   status_code = "200"
 }
@@ -361,10 +364,14 @@ resource "aws_api_gateway_integration" "list_get" {
 }
 
 resource "aws_api_gateway_integration_response" "list_get" {
-  rest_api_id = aws_api_gateway_rest_api.jphacks.id
-  resource_id = aws_api_gateway_resource.list_get.id
-  http_method = aws_api_gateway_method.list_get.http_method
-  status_code = aws_api_gateway_method_response.list_get_response_200.status_code
+  rest_api_id       = aws_api_gateway_rest_api.jphacks.id
+  resource_id       = aws_api_gateway_resource.list_get.id
+  http_method       = aws_api_gateway_method.list_get.http_method
+  status_code       = aws_api_gateway_method_response.list_get_response_200.status_code
+  selection_pattern = "200"
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
   response_templates = {
     "application/json" = ""
   }
