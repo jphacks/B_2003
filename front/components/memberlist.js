@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
+import Showmember from '../components/showmember'
 
 class Memberlist extends Component {
 
@@ -35,6 +36,7 @@ class Memberlist extends Component {
     }
 
     render(){
+        const members = new Array('shunya','kotaro','naoya','kohei');
         return (<div>
             <h1>Member list</h1>
             <div>閲覧したいグループ名とそのパスワードを入力してください</div>
@@ -43,7 +45,7 @@ class Memberlist extends Component {
                 <p>グループパスワード:<input type="text" name="password" required></input></p>
                 <button type="submit">メンバーを閲覧</button>
             </form>
-
+            <Showmember memberlist = {members}/>
             <div>
                 <Link href = "/">
                     <a>Go home</a>

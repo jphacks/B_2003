@@ -6,12 +6,13 @@ class Showmember extends Component {
         super(props);
     }
 
-    componentDidMount(){
-        const members = new Array('shunya','kotaro','naoya','kohei','uec');
+    componentDidMount(props){
+        //const members = new Array('shunya','kotaro','naoya','kohei','uec');
+        const members = this.props.memberlist;
         const timeline = document.getElementById("member");
         timeline.innerHTML = "";
         for(var i=0;i<members.length;i++){
-            const sentence = document.createElement("h5");
+            const sentence = document.createElement("p");
             const name = document.createTextNode(members[i]);
             sentence.appendChild(name);
             timeline.appendChild(sentence);
