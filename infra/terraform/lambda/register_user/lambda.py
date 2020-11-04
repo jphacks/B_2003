@@ -84,7 +84,7 @@ def handler(event, context):
 
     name = body['name']
     email_address = body['email_address']
-    affilitian = body['affilitian']
+    affiliation = body['affiliation']
     imageID = "NONE"
     
     with conn.cursor(pymysql.cursors.DictCursor) as cur:
@@ -135,8 +135,8 @@ def handler(event, context):
                     },
                     'body': body
                 } 
-            sql = "INSERT INTO users (userID, name, email_address, affilitian) VALUES (%s, %s, %s, %s)"
-            tmp = [(face_token), (name), (email_address), (affilitian)]
+            sql = "INSERT INTO users (userID, name, email_address, affiliation) VALUES (%s, %s, %s, %s)"
+            tmp = [(face_token), (name), (email_address), (affiliation)]
             print('tmp=', tmp)
             cur.execute(sql, tmp)
             
