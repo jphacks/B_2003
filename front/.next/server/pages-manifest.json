@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/group": "pages/group.js"
+  "/add_member": "pages/add_member.js",
+  "/member_list": "pages/member_list.js"
 }
