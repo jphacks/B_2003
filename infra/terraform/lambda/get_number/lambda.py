@@ -46,7 +46,10 @@ def handler(event, context):
                 return { 
                     'isBase64Encoded': False,
                     'statusCode': 200,
-                    'headers': {},
+                    'headers': {            
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
                     'body': body
                 }
             print('row[facilityID]=',row['facilityID'])    
@@ -68,7 +71,6 @@ def handler(event, context):
             
         #データベースコミット！ 
         conn.commit()
-        #conn.close()
         
     body = json.dumps({
         "result":1,
