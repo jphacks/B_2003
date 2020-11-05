@@ -51,7 +51,7 @@ class Memberlist extends Component {
                 <p>グループパスワード:<input type="text" name="password" required></input></p>
                 <button type="submit">メンバーを閲覧</button>
             </form>
-            <div id = "showmember"></div>
+            <div id = "showmember"/>
             <div>
                 <Link href = "/">
                     <a>Go home</a>

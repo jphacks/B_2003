@@ -1,8 +1,9 @@
 import Button from '../node_modules/react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Link from 'next/link';
-
+import Login from './login';
 
 class Grouplogin extends Component {
 
@@ -24,19 +25,24 @@ class Grouplogin extends Component {
                 window.alert("ようこそ!"+responseJson.name+"さん。")
                 console.log(responseJson.name)
                 console.log(responseJson.facilityID)
-                console.log(responseJson.passwordtoken)
+                console.log(responseJson.password_token)
+
+                const afterdom = document.getElementById('loginarea')
+
+                ReactDOM.render(<Login name={responseJson.name} facilityID={responseJson.facilityID} password_token={responseJson.password_token}/>, afterdom)
             }
-            location.href = "/log_in";
+            //location.href = "/log_in";
         })
       .catch((error) =>{
         window.alert("エラーが起きました。もう一度入力してください。")
-        location.href = "/group_log_in"
+        //location.href = "/group_log_in"
         //console.error('error');
       });
     }
 
     render(){
         return (<div>
+        <div id = 'loginarea'>
         <h1>Group Log in</h1>
         <div>ログインに必要な情報を入力してください</div>
 
@@ -45,10 +51,6 @@ class Grouplogin extends Component {
             <p>パスワード:<input type="text" name="password" required></input></p>
             <Button variant="info" type="submit" size='lg'>ログイン</Button>
         </form>
-        <div>
-            <Link href = "/member_list">
-                <a>メンバーリスト</a>
-            </Link>
         </div>
         <div>
             <Link href = "/group_registration">
