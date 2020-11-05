@@ -37,13 +37,13 @@ export default class Groupregistration extends Component {
         return(<div className='text-center'>
             <p><h1>Group registration</h1></p>
             <p>　</p>
-            <p><div><h2>"サービス名"へようこそ</h2></div></p>
+            <p><div><h2>Face Appへようこそ</h2></div></p>
             <p><div><h4>登録情報を入力してください</h4></div></p>
             <p><form id="information" onSubmit={this.handlesubmit}>
-                <p>団体名:　<input type="text" name="name" required></input></p>
-                <p>メールアドレス:　<input type="email" name="email_address" required></input></p>
-                <p>パスワード:　<input type="text" name="password" minLength="5" required></input></p>
-                <p>同時に活動できる人数:　<input type="number" name="limit" min="1" required></input></p>
+                <p>団体名:　<input type="text" name="name" placeholder="Name" required></input></p>
+                <p>メールアドレス:　<input type="email" name="email_address" placeholder="Email" required></input></p>
+                <p>パスワード:　<input type="text" name="password" minLength="5" placeholder="Password" required></input></p>
+                <p>同時に活動できる人数:　<input type="number" name="limit" min="1" placeholder="Limit" required></input></p>
                 <Button variant='info' type="submit">新規登録</Button>
             </form></p>
             <p><div>
