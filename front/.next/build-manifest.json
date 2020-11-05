@@ -24,15 +24,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/group": [
+    "/group_log_in": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/group.js"
+      "static/chunks/pages/group_log_in.js"
     ],
-    "/group_registration": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/group_registration.js"
     ]
   },
   "ampFirstPages": []

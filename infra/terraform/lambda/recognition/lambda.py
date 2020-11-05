@@ -54,7 +54,7 @@ def searchByimg(photo):
     collectionId = 'Collection'
     photo_bytes = decode_base64(photo)  #検索したい画像。渡し方要検討
     threshold = 70 #信頼度
-    maxFaces = 2 #認識させる最大の顔の数
+    maxFaces = 1 #認識させる最大の顔の数
     
     client = boto3.client('rekognition')
     
@@ -87,12 +87,11 @@ def handler(event, context):
                 result = 2
                 cur.execute("SELECT starttime FROM facility_number WHERE userID=%s AND is_leave=0", faceID)
                 for row in cur:
-                    result = 3 #現在中にいる場合
                     #TODO 早すぎる退出の例外処理
                     dt_now = datetime.datetime.now()
                     print('exit',dt_now)
                     cur.execute("UPDATE facility_number SET endtime= %s, is_leave=1 WHERE (is_leave=0 AND userID=%s) AND facilityID= %s",[(dt_now), (faceID),(facilityID)])
-                if result == 3:
+                    print("OK2")
                     body = json.dumps({
                         "result":3,
                     })
@@ -100,18 +99,19 @@ def handler(event, context):
                     return { 
                         'isBase64Encoded': False,
                         'statusCode': 200,
-                        'headers': {},
+                        'headers':{ 
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
                         'body': body
                     } 
                 
                 print('start checking room limit')
                 cur.execute("SELECT * FROM facility_number WHERE ((is_leave=0 AND facilityID=%s) AND (userID!=%s ))", [(facilityID),(faceID)])
                 is_leave_num = 0
-                row = cur.fetchone()
-                while row is not None:
+                for row in cur:
                   print('row=',row)
                   is_leave_num += 1
-                  row = cur.fetchone()
                     
                 print('now staying num=',is_leave_num)
                 cur.execute("SELECT limit_days FROM facility WHERE facilityID=%s", facilityID)
@@ -124,11 +124,13 @@ def handler(event, context):
                         "result":1,
                     })
                     print('room over limit')
-                    conn.commit()
                     return { #人数が制限を超えていたとき
                         'isBase64Encoded': False,
                         'statusCode': 200,
-                        'headers': {},
+                        'headers':{ 
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
                         'body': body
                     } 
                 print("finish checking room limit")
@@ -138,6 +140,7 @@ def handler(event, context):
                     tmp1 = [(faceID), (facilityID), (dt_now), (0)]
                     print('enter', tmp1)
                     cur.execute("INSERT INTO facility_number(userID, facilityID, starttime, is_leave) VALUE (%s, %s, %s, %s)",tmp1)
+                    conn.commit()
             except Exception as e:
                 print('Exception ',e)
                 result = 0
@@ -147,7 +150,6 @@ def handler(event, context):
     
     #データベースコミット！ 
     conn.commit()
-    #conn.close()
     body = json.dumps({
         "result":result
     })
