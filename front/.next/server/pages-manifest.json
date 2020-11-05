@@ -2,6 +2,4 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/group_log_in": "pages/group_log_in.js",
-  "/log_in": "pages/log_in.js"
 }

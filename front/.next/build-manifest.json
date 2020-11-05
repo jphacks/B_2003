@@ -29,10 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/group_log_in.js"
     ],
-    "/log_in": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/log_in.js"
     ]
   },
   "ampFirstPages": []
