@@ -2,21 +2,23 @@ import Link from 'next/link'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default () =><div className='text-center'>
-    <h1>Group</h1>
-    <div><h1>"サービス名"へようこそ</h1>新しくまだアカウントを持っていない団体は新規登録。すでに登録済みの団体はログインを押してください。</div>
-    <div>
+    <p><h1>Group</h1></p>
+    <p>　</p>
+    <p><div><h2>FaceAppへようこそ</h2></div></p>
+    <p><div><h4>新しくまだアカウントを持っていない団体は新規登録,すでに登録済みの団体はログインを押してください</h4></div></p>
+    <p><div>
         <Link href = "/group_log_in">
-            <a>ログイン</a>
+            <a className="btn btn-primary"><font size="5">ログイン</font></a>
         </Link>
-    </div>
-    <div>
+    </div></p>
+    <p><div>
         <Link href = "/group_registration">
-            <a>新規登録</a>
+            <a className="btn btn-success"><font size = "5">新規登録</font></a>
         </Link>
-    </div>
+    </div></p>
     <div>
         <Link href = "/">
-            <a>Go home</a>
+            <a><font size="4">Go Home</font></a>
         </Link>
     </div>
 </div>

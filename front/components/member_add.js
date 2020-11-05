@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam'
 import Link from 'next/link'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from '../node_modules/react-bootstrap/Button';
 
 export default class Addmember extends Component {
 
@@ -65,25 +67,26 @@ export default class Addmember extends Component {
             facingMode : "user"
         }
 
-        return (<div>
+        return (<div className="text-center">
             <h1>Add member</h1>
-            <div><h1>"サービス名"へようこそ</h1>登録するメンバーの情報を教えてください</div>
-            <Webcam
-                    audio={false}
-                    ref={this.setRef}
-                    screenshotFormat="image/jpeg"
-                    videoConstraints={{videoConstraints}}
-                    onUserMediaError={() => window.alert('cant access your camera')}
-            />
-            <button onClick = {this.capture}>撮影</button>
-            <img id="faceimg" src=""></img>
-            <form id="new_member" onSubmit={this.handlesubmit}>
-                <p>名前:<input type="text" name="name" required></input></p>
-                <p>メールアドレス:<input type="email" name="email_address" required></input></p>
-                <p>所属:<input type="text" name="affilitian" required></input></p>
-
-                <button type="submit">新規登録</button>
-            </form>
+            <div><h2>"サービス名"へようこそ</h2><h4>登録するメンバーの情報を教えてください</h4></div>
+            <p><div><Webcam
+                        audio={false}
+                        ref={this.setRef}
+                        screenshotFormat="image/jpeg"
+                        videoConstraints={{videoConstraints}}
+                        onUserMediaError={() => window.alert('cant access your camera')}
+                    />
+                    <img id="faceimg" src=""></img>
+                </div>
+                <Button variant="dark" onClick = {this.capture}>撮影</Button>
+            </p>
+            <p><form id="new_member" onSubmit={this.handlesubmit}>
+                <p>名前:　<input type="text" name="name" required></input></p>
+                <p>メールアドレス:　<input type="email" name="email_address" required></input></p>
+                <p>所属:　<input type="text" name="affilitian" required></input></p>
+                <Button type="submit" variant = "info">新規登録</Button>
+            </form></p>
             <div>
                 <Link href = "/member_list">
                     <a>Member list</a>
@@ -91,7 +94,7 @@ export default class Addmember extends Component {
             </div>
             <div>
                 <Link href = "/">
-                    <a>Go home</a>
+                    <a>Go Home</a>
                 </Link>
             </div>
         </div>)
