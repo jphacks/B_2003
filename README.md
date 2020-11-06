@@ -1,6 +1,5 @@
 # 入退室管理システム Face app
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2020/09/JPHACKS2020_ogp.jpg)](https://www.youtube.com/watch?v=G5rULR53uMk)
 ![06112020031158A](https://user-images.githubusercontent.com/60308978/98367152-7f5e8f80-2078-11eb-9411-7cf701f2df17.png)
 
 
