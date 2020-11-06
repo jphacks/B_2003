@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from '../node_modules/react-bootstrap/Button';
 
 class Showmember extends Component {
     constructor(props){
@@ -26,8 +28,8 @@ class Showmember extends Component {
         */
 
         return (
-        <div>
-            <h1>活動メンバー</h1>
+        <div className="text-center">
+            <h3>活動メンバー</h3>
             <div id = "member">{this.props.memberlist}</div>
         </div>)
     }

@@ -29,20 +29,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/group": [
+    "/add_member": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/group.js"
+      "static/chunks/pages/add_member.js"
     ],
-    "/group_log_in": [
+    "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/group_log_in.js"
-    ],
-    "/member": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/member.js"
+      "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
   "ampFirstPages": []
