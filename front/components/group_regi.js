@@ -15,7 +15,7 @@ export default class Groupregistration extends Component {
         const method = "POST";
         const body = JSON.stringify({name: information.name.value,email_address: information.email_address.value,password: information.password.value,limit: information.limit.value,});
         //console.log(body);
-        fetch('https://uzi8fe1wu4.execute-api.eu-west-1.amazonaws.com/register_place/register_place',{method: "POST",body: body})
+        fetch('https://9dlsqbzy25.execute-api.eu-west-1.amazonaws.com/register_place/register_place',{method: "POST",body: body})
         .then((response) => response.json())
         .then((responseJson) => {
         //console.log(responseJson);
