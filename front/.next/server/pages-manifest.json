@@ -2,7 +2,13 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/": "pages/index.js",
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/add_member": "pages/add_member.js"
+=======
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/member": "pages/member.js",
+  "/": "pages/index.js"
+>>>>>>> master
 }

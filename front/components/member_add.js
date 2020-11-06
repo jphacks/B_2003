@@ -35,7 +35,7 @@ export default class Addmember extends Component {
         e.preventDefault();
 
         const method = "POST";
-        const body = JSON.stringify({name: new_member.name.value,email_address: new_member.email_address.value,affilitian: new_member.affilitian.value,face_photo: this.state.faceid,});
+        const body = JSON.stringify({name: new_member.name.value,email_address: new_member.email_address.value,affiliation: new_member.affiliation.value,face_photo: this.state.faceid,});
         
         console.log(body);
        
@@ -87,7 +87,7 @@ export default class Addmember extends Component {
             <p><form id="new_member" onSubmit={this.handlesubmit}>
                 <p>名前:　<input type="text" name="name" placeholder="Name" required></input></p>
                 <p>メールアドレス:　<input type="email" name="email_address" placeholder="Email" required></input></p>
-                <p>所属:　<input type="text" name="affilitian" placeholder="Affiliation" required></input></p>
+                <p>所属:　<input type="text" name="affiliation" placeholder="Affiliation" required></input></p>
                 <Button type="submit" variant = "info">新規登録</Button>
             </form></p>
             <div>
