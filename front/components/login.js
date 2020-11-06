@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Webcam from 'react-webcam';
 import Showmember from './showmember';
+import Button from '../node_modules/react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class Login extends Component {
 
@@ -88,18 +91,19 @@ class Login extends Component {
         }
 
         return (
-        <div>
-        <h1>Log in</h1>
-        <div>カメラに顔を映して、ログインボタンを押してください</div>
-        <Webcam
+        <div className='text-center'>
+        <p><h1>Log in</h1></p>
+        <p>　</p>
+        <p><div><h4>カメラに顔を映して、ログインボタンを押してください</h4></div></p>
+        <p><div><Webcam
             audio={false}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
             videoConstraints={{videoConstraints}}
             onUserMediaError={() => window.alert('cant access your camera')}
-        />
-        <button onClick = {this.capture}>撮影</button>
-
+        /></div>
+            <Button variant="dark" onClick = {this.capture}>撮影</Button>
+        </p>
         <div id = "showmember"/>
         
         </div>)

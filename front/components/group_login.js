@@ -43,16 +43,17 @@ class Grouplogin extends Component {
     render(){
         return (<div>
         <div id = 'loginarea'>
-        <h1>Group Log in</h1>
-        <div>ログインに必要な情報を入力してください</div>
+        <p><h1>Group Log in</h1></p>
+        <p>　</p>
+        <p><div><h4>ログインに必要な情報を入力してください</h4></div></p>
 
-        <form id = "group_info" onSubmit={this.sendinfo}>
-            <p>メールアドレス:<input type="email" name="email_address" required></input></p>
-            <p>パスワード:<input type="text" name="password" required></input></p>
-            <Button variant="info" type="submit" size='lg'>ログイン</Button>
-        </form>
+        <p><form id = "group_info" onSubmit={this.sendinfo}>
+            <p>メールアドレス:　<input type="email" name="email_address" placeholder="Email" required></input></p>
+            <p>パスワード:　<input type="text" name="password" placeholder="Password" required></input></p>
+            <Button variant="info" type="submit">ログイン</Button>
+        </form></p>
         </div>
-        <div>
+        <p><div>
             <Link href = "/group_registration">
                 <a>新規登録</a>
             </Link>
@@ -61,7 +62,7 @@ class Grouplogin extends Component {
             <Link href = "/">
                 <a>Go home</a>
             </Link>
-        </div>
+        </div></p>
     </div>)
     }
 }

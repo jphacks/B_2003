@@ -3,6 +3,7 @@ import Webcam from 'react-webcam'
 import Link from 'next/link'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from '../node_modules/react-bootstrap/Button';
+//import Image from 'next/image';
 
 export default class Addmember extends Component {
 
@@ -68,8 +69,10 @@ export default class Addmember extends Component {
         }
 
         return (<div className="text-center">
-            <h1>Add member</h1>
-            <div><h2>"サービス名"へようこそ</h2><h4>登録するメンバーの情報を教えてください</h4></div>
+            <p><h1>Add member</h1></p>
+            <p>　</p>
+            <p><div><h2>FaceAppへようこそ</h2></div></p>
+            <p><div><h4>登録するメンバーの情報を教えてください</h4></div></p>
             <p><div><Webcam
                         audio={false}
                         ref={this.setRef}
@@ -82,9 +85,9 @@ export default class Addmember extends Component {
                 <Button variant="dark" onClick = {this.capture}>撮影</Button>
             </p>
             <p><form id="new_member" onSubmit={this.handlesubmit}>
-                <p>名前:　<input type="text" name="name" required></input></p>
-                <p>メールアドレス:　<input type="email" name="email_address" required></input></p>
-                <p>所属:　<input type="text" name="affiliation" required></input></p>
+                <p>名前:　<input type="text" name="name" placeholder="Name" required></input></p>
+                <p>メールアドレス:　<input type="email" name="email_address" placeholder="Email" required></input></p>
+                <p>所属:　<input type="text" name="affiliation" placeholder="Affiliation" required></input></p>
                 <Button type="submit" variant = "info">新規登録</Button>
             </form></p>
             <div>

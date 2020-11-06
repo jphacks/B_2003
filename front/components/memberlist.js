@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link'
 import Showmember from '../components/showmember'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from '../node_modules/react-bootstrap/Button';
 
 class Memberlist extends Component {
 
@@ -43,15 +45,18 @@ class Memberlist extends Component {
     }
 
     render(){
-        return (<div>
-            <h1>Member list</h1>
-            <div>閲覧したいグループ名とそのパスワードを入力してください</div>
-            <form id="information" onSubmit={this.handlesubmit}>
-                <p>グループ名:<input type="text" name="name" required></input></p>
-                <p>グループパスワード:<input type="text" name="password" required></input></p>
-                <button type="submit">メンバーを閲覧</button>
-            </form>
+        return (<div className="text-center">
+            <p><h1>Member list</h1></p>
+            <p>　</p>
+            <p><div><h4>閲覧したいグループ名とそのパスワードを入力してください</h4></div></p>
+            <p><form id="information" onSubmit={this.handlesubmit}>
+                <p>グループ名:　<input type="text" name="name" placeholder="Name" required></input></p>
+                <p>グループパスワード:　<input type="text" name="password" placeholder="Password" required></input></p>
+                <Button type="submit" variant = "info">メンバーを閲覧</Button>
+            </form></p>
+            <p>　</p>
             <div id = "showmember"/>
+            <p>　</p>
             <div>
                 <Link href = "/">
                     <a>Go home</a>

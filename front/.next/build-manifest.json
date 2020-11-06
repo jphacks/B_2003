@@ -29,6 +29,16 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
+    "/add_member": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/add_member.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+=======
     "/member": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -37,6 +47,7 @@
     "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
+>>>>>>> master
       "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
