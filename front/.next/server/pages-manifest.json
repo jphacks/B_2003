@@ -3,8 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/member": "pages/member.js",
-  "/": "pages/index.js",
-  "/member_list": "pages/member_list.js",
-  "/add_member": "pages/add_member.js"
+  "/member": "pages/member.js"
 }
