@@ -24,10 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/group": [
+    "/add_member": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/group.js"
+      "static/chunks/pages/add_member.js"
     ],
     "/group_log_in": [
       "static/chunks/main.js",

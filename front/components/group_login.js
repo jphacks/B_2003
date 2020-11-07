@@ -29,7 +29,7 @@ class Grouplogin extends Component {
 
                 const afterdom = document.getElementById('loginarea')
 
-                ReactDOM.render(<Login name={responseJson.name} facilityID={responseJson.facilityID} password_token={responseJson.password_token}/>, afterdom)
+                ReactDOM.render(<Login name={responseJson.name} facilityID={responseJson.facilityID} password_token={responseJson.password_token} password={group_info.password.value}/>, afterdom)
             }
             //location.href = "/log_in";
         })

@@ -15,13 +15,13 @@ class Login extends Component {
     }
 
     doAction(e){
-        e.preventDefault();
         const dom1 = document.getElementById('whole');
 
-        const element = (
-            <div><Showcsv/></div>
-        );
-        ReactDOM.render(<Showcsv/>,dom1);
+        console.log(this.props.name)
+        console.log(this.props.password)
+        console.log(this.props.facilityID)
+
+        ReactDOM.render(<Showcsv name={this.props.name} password={this.props.password} facilityID={this.props.facilityID}/>,dom1);
     }
 
     setRef = webcam => {
