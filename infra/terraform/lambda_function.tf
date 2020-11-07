@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "get_number" {
   function_name = "get_number"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.get_number.output_path
@@ -32,7 +32,7 @@ resource "aws_lambda_function" "get_number" {
 resource "aws_lambda_function" "recognition" {
   function_name = "recognition"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.recognition.output_path
@@ -63,7 +63,7 @@ resource "aws_lambda_function" "recognition" {
 resource "aws_lambda_function" "register_place" {
   function_name = "register_place"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.register_place.output_path
@@ -93,7 +93,7 @@ resource "aws_lambda_function" "register_place" {
 resource "aws_lambda_function" "register_user" {
   function_name = "register_user"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.register_user.output_path
@@ -123,7 +123,7 @@ resource "aws_lambda_function" "register_user" {
 resource "aws_lambda_function" "signin_place" {
   function_name = "signin_place"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.signin_place.output_path
@@ -153,7 +153,7 @@ resource "aws_lambda_function" "signin_place" {
 resource "aws_lambda_function" "list_get" {
   function_name = "list_get"
   handler       = "lambda.handler"
-  role          = data.aws_iam_role.lambda_role.arn
+  role          = aws_iam_role.jphacks.arn
   runtime       = "python3.8"
 
   filename         = data.archive_file.list_get.output_path
