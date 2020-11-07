@@ -3,7 +3,6 @@ locals {
   output_path            = "./upload"
   aws_region             = "eu-west-1"
   vpc_cidr_block         = "10.0.0.0/16"
-  my_ip                  = "0.0.0.0/0"
   db_subnet_group        = "jphacks"
   db_cluster_identifier  = "jphacks-database-1"
   db_instance_identifier = "jphacks-instance-1"
