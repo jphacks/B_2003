@@ -61,7 +61,11 @@
 * ブラウザで写真撮影、BASE64に変換してバックのapiに転送  
 * herokuとawsを使用し、クラウドでのリソースの立ち上げ 
 * aws rekognitionで提供されている顔認証apiを使用し、顔写真から入退室を管理するapiの作成。
-* フロントとバックをapiにて通信確立
+* フロントとバックをapiにて通信確立  
+  
+### 発表スライドに関して  
+G slideにて作成しています。  
+[こちら](https://docs.google.com/presentation/d/1WxiNbQYpIj2pXey5inaxtHmTetlyc6rs2QAKa4Irk58/edit?usp=sharing)
   
 ## ディレクトリ構成に関して  
 フロントエンドとバックエンド(awsで構築しているのでinfraとしています)でフォルダを分けて構築しています。  
