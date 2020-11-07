@@ -2,13 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/": "pages/index.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/add_member": "pages/add_member.js"
-=======
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/member": "pages/member.js",
-  "/": "pages/index.js"
->>>>>>> master
+  "/add_member": "pages/add_member.js",
+  "/group_log_in": "pages/group_log_in.js"
 }
