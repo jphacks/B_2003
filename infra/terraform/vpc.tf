@@ -54,14 +54,6 @@ resource "aws_default_security_group" "sg" {
     to_port   = 0
   }
 
-  ingress {
-    cidr_blocks = [local.my_ip]
-    from_port   = 0
-    protocol    = "-1"
-    self        = false
-    to_port     = 0
-  }
-
   egress {
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 0

@@ -80,8 +80,7 @@ def handler(event, context):
             result=0
 
         # データベースコミット！
-        conn.commit()
-        conn.close()
+    conn.commit()
 
     body=json.dumps({
         "result": 1,
