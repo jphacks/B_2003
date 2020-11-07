@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Webcam from 'react-webcam';
 import Showmember from './showmember';
+import Showcsv from './showcsv';
 import Button from '../node_modules/react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,6 +11,17 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
+        this.doAction = this.doAction.bind(this);
+    }
+
+    doAction(e){
+        e.preventDefault();
+        const dom1 = document.getElementById('whole');
+
+        const element = (
+            <div><Showcsv/></div>
+        );
+        ReactDOM.render(<Showcsv/>,dom1);
     }
 
     setRef = webcam => {
@@ -79,10 +91,8 @@ class Login extends Component {
                 //console.error('error');
             });
         });
-
-        
     }
-       
+
     render (){
         const videoConstraints = {
             width : 1280,
@@ -91,20 +101,22 @@ class Login extends Component {
         }
 
         return (
-        <div className='text-center'>
+        <div className='text-center' id = 'whole'>
         <p><h1>Log in</h1></p>
         <p>　</p>
         <p><div><h4>カメラに顔を映して、ログインボタンを押してください</h4></div></p>
-        <p><div><Webcam
+        <div><Webcam
             audio={false}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
             videoConstraints={{videoConstraints}}
             onUserMediaError={() => window.alert('cant access your camera')}
-        /></div>
-            <Button variant="dark" onClick = {this.capture}>撮影</Button>
-        </p>
+        />
+        <Button variant="dark" onClick = {this.capture}>撮影</Button>
         <div id = "showmember"/>
+        </div>
+
+        <Button onClick={this.doAction}>メンバー詳細</Button>
         
         </div>)
     };

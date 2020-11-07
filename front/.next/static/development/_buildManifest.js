@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__BUILD_MANIFEST = {__rewrites:[],"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/add_member":["static\u002Fchunks\u002Fpages\u002Fadd_member.js"],"/next/dist/pages/_error":["static\u002Fchunks\u002Fpages\u002Fnext\u002Fdist\u002Fpages\u002F_error.js"],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002Fadd_member","\u002Fnext\u002Fdist\u002Fpages\u002F_error"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
-=======
-self.__BUILD_MANIFEST = {__rewrites:[],"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/member":["static\u002Fchunks\u002Fpages\u002Fmember.js"],"/next/dist/pages/_error":["static\u002Fchunks\u002Fpages\u002Fnext\u002Fdist\u002Fpages\u002F_error.js"],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002Fmember","\u002Fnext\u002Fdist\u002Fpages\u002F_error"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
->>>>>>> master
+self.__BUILD_MANIFEST = {__rewrites:[],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/group":["static\u002Fchunks\u002Fpages\u002Fgroup.js"],"/group_log_in":["static\u002Fchunks\u002Fpages\u002Fgroup_log_in.js"],sortedPages:["\u002F_app","\u002F_error","\u002Fgroup","\u002Fgroup_log_in"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
